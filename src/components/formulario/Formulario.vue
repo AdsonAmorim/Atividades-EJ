@@ -48,26 +48,28 @@
         ></b-form-input>
       </b-form-group>
 
-      <Botao tipo="submit" rotulo="Enviar" variant="primary"/>
-      <Botao tipo="reset" rotulo="Limpar" variant="danger"/>
+      <div class="buttons">
+        <b-button type="submit" variant="primary" size="lg" >Enviar</b-button>
+        <b-button type="reset" variant="danger" size="lg" >Limpar</b-button>
+      </div>
     </b-form>
+
+    <b-img src="src/public/images/forms.svg" fluid></b-img>
   </div>
 </template>
 
 <script>
 //tentar criar componente button e form-input/form-group
-import Botao from './Botao.vue'
 import axios from 'axios'
 import User from '../../domain/user/User'
+
   export default {
     data() {
       return {
         user: new User()
       }
     },
-    components:{
-      Botao
-    },
+    
     methods: {
       onSubmit() {
         const {nome,email,senha,confirmSenha} = this.user
@@ -87,8 +89,36 @@ import User from '../../domain/user/User'
 </script>
 <style>
 .form{
-  width: 50%;
+  width: 80%;
   margin: auto auto;
   min-width: 15rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.2rem;
 }
+
+@media (min-width:320px) and (max-width:800px) {
+    .form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .form img {
+      display: none;    
+    }
+    
+    .form .buttons{
+      width: 100%;
+      display: flex;
+      margin-top: .8rem;
+      justify-content: space-between;
+    }
+
+    .form .buttons button{
+      width: 48%;
+    }
+
+}
+
 </style>
